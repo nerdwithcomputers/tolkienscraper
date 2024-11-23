@@ -11,14 +11,16 @@ async function scrape(url){
     const data = await page.content();
     console.log(data);
     await browser.close();
+    return data;
 }
 
 app.get('/', (req, res)=>{
-    const headers = req.headers;
-    console.log(headers.url);
-    scrape(headers.url)    
+    const url = req.headers.url;
+    var text;
+    console.log(url);
+    scrape(url).then((x)=> res.send(x));
 });
 
 app.listen(port, ()=>{
-    console.log('SOMEONE AT THE DOOR')
+    console.log('server listening on: ' + port.toString());
 });
