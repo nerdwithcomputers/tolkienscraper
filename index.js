@@ -1,17 +1,22 @@
 import express from "express";
-import axios from "axios";
-
+import puppeteer from "puppeteer";
 
 const app = express();
 const port = 3000;
 
+async function scrape(url){
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(url);
+    const data = await page.content();
+    console.log(data);
+    await browser.close();
+}
+
 app.get('/', (req, res)=>{
     const headers = req.headers;
     console.log(headers.url);
-    axios.get(headers.url)
-        .then(
-            (x)=>console.log(x)
-        );
+    scrape(headers.url)    
 });
 
 app.listen(port, ()=>{
