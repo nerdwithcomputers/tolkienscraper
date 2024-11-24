@@ -1,7 +1,9 @@
 import express from "express";
 import puppeteer from "puppeteer";
+import cors from "cors";
 
-const app = express();
+var app = express();
+app.use(cors());
 const port = 3000;
 
 async function scrape(url){
@@ -9,14 +11,14 @@ async function scrape(url){
     const page = await browser.newPage();
     await page.goto(url);
     const data = await page.content();
-    console.log(data);
+    // console.log(data);
     await browser.close();
     return data;
 }
 
 app.get('/', (req, res)=>{
+    console.log(req.ip);
     const url = req.headers.url;
-    var text;
     console.log(url);
     scrape(url).then((x)=> res.send(x));
 });
