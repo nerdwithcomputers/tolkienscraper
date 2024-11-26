@@ -10,7 +10,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-const port = 3000;
+const port = 42449;
 // sneaky boi
 puppeteer.use(stealth());
 
