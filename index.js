@@ -1,10 +1,15 @@
 import express from "express";
 import puppeteer from "puppeteer-extra";
-import cors from "cors";
+// import cors from "cors";
 import stealth from "puppeteer-extra-plugin-stealth";
 
 var app = express();
-app.use(cors());
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 const port = 3000;
 // sneaky boi
 puppeteer.use(stealth());
