@@ -4,11 +4,6 @@ import puppeteer from "puppeteer-extra";
 import stealth from "puppeteer-extra-plugin-stealth";
 
 var app = express();
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, url");
-    next();
-});
 
 const port = 42449;
 // sneaky boi
@@ -29,6 +24,9 @@ app.get('/', (req, res)=>{
     console.log(req.ip);
     const url = req.headers.url;
     console.log(url);
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, url");
     scrape(url).then((x)=> res.send(x));
 });
 
