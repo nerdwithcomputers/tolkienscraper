@@ -20,21 +20,22 @@ async function scrape(url){
     return data;
 }
 
-app.options("/", function(req, res, next){
-    res.append('Access-Control-Allow-Origin', '*');
-    res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.append('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, url');
+app.options("/", (req, res)=>{
+    res.set('Access-Control-Allow-Origin', '*');
+    res.set('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, url');
     res.status(200);
     // next();
 });
 
-app.get('/', cors(), (req, res, next)=>{
+app.get('/', cors(), (req, res)=>{
     console.log(req.ip);
+    res.status(200);
     const url = req.headers.url;
     console.log(url);
-    res.append("Access-Control-Allow-Origin", "*");
-    res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, url");
+    res.set("Access-Control-Allow-Origin", "*");
+    res.set('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, url");
     scrape(url).then((x)=> res.send(x));
 });
 
