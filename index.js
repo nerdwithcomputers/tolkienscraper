@@ -21,7 +21,7 @@ async function scrape(url){
 }
 
 app.options("/", (req, res)=>{
-    res.set('Access-Control-Allow-Origin', '*');
+    res.set('Access-Control-Allow-Origin', ['*']);
     res.set('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, url');
     res.status(200);
@@ -33,7 +33,7 @@ app.get('/', cors(), (req, res)=>{
     res.status(200);
     const url = req.headers.url;
     console.log(url);
-    res.set("Access-Control-Allow-Origin", "*");
+    res.set("Access-Control-Allow-Origin", ["*"]);
     res.set('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, url");
     scrape(url).then((x)=> res.send(x));
