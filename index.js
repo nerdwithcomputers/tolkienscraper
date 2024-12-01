@@ -28,7 +28,7 @@ app.options("/", (req, res)=>{
     // next();
 });
 
-app.get('/', cors(), (req, res)=>{
+app.get('/', (req, res)=>{
     console.log(req.ip);
     res.status(200);
     const url = req.headers.url;
