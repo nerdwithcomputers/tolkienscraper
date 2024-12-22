@@ -1,0 +1,1 @@
+this is my increasingly desperate attempt to make a functional and easy to use web scraper server program for use with mobile apps, because apparently that's what you have to do to get proper web scraping with expo
