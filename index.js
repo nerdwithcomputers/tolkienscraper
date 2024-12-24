@@ -20,14 +20,15 @@ async function scrape(url){
     return data;
 }
 
-app.options("*", cors(), (req, res, next)=>{
-    /*
-    res.set('Access-Control-Allow-Origin', ['*']);
-    res.set('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, url');
-    */
-    res.status(200).send('alright');
-});
+ app.options("*", cors()) 
+ /*(req, res, next)=>{
+//     /*
+//     res.set('Access-Control-Allow-Origin', ['*']);
+//     res.set('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+//     res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, url');
+//     */
+//     res.status(200).send('alright');
+// });
 
 app.get('*', (req, res)=>{
     console.log(req.ip);
