@@ -4,7 +4,11 @@ import cors from "cors";
 import stealth from "puppeteer-extra-plugin-stealth";
 
 var app = express();
-app.use(cors());
+app.use((req, res, next)=>{
+    res.set('Access-Control-Allow-Origin', ['*']);
+    res.set('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, url');
+});
 const port = 42449;
 // sneaky boi
 puppeteer.use(stealth());
