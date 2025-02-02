@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import express from "express";
 import puppeteer from "puppeteer-extra";
 import cors from "cors";
